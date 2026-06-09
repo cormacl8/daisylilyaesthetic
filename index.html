@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Daisy-Lily Aesthetic &amp; Beauty Clinic</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── HOME HERO ── */
+.hero {
+  min-height: 88vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 60px 28px 80px;
+}
+.hero-logo {
+  width: 128px; height: 128px; border-radius: 50%;
+  object-fit: cover; border: 3px solid var(--white);
+  box-shadow: var(--shadow-med); display: block; margin: 0 auto 26px;
+}
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(38px,10vw,58px);
+  font-weight: 300; color: var(--deep); line-height: 1.12; margin-bottom: 14px;
+}
+.hero-title em { font-style: italic; color: var(--mauve); display: block; }
+.hero-tagline {
+  font-size: 14px; max-width: 300px; margin: 0 auto 36px;
+  color: var(--plum); opacity: .82; line-height: 1.7;
+}
+.hero-cta {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--mauve), var(--plum));
+  color: var(--white); text-decoration: none;
+  font-weight: 500; font-size: 13px; letter-spacing: .12em;
+  text-transform: uppercase; padding: 17px 44px;
+  border-radius: var(--radius-pill); box-shadow: var(--shadow-btn);
+  transition: transform .2s, box-shadow .2s;
+}
+.hero-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(122,74,86,.3); }
+
+/* ── HOURS ── */
+.hours-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid var(--petal); font-size: 13.5px;
+}
+.hours-row:last-child { border-bottom: none; }
+.hours-day { opacity: .8; }
+.hours-time { font-weight: 500; color: var(--deep); }
+.hours-time.closed { color: var(--rose); font-weight: 300; font-style: italic; }
+
+/* ── ADDRESS ── */
+.address-block { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--petal); }
+.address-block p { font-size: 13.5px; line-height: 1.9; opacity: .85; }
+
+/* social row */
+.social-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+
+/* petal accent */
+.petal-accent {
+  text-align: center; padding: 6px 0; font-size: 18px;
+  opacity: .35; letter-spacing: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo-wrap" href="index.html">
+      <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
+      <span class="nav-brand">Daisy‑Lily</span>
+    </a>
+    <div class="nav-links">
+      <a href="gallery.html">Gallery</a>
+      <a href="login.html">Login</a>
+      <a class="nav-cta" href="book.html">Book</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero blob-container">
+  <div class="blob blob-tr"></div>
+  <div class="blob blob-bl"></div>
+  <div class="blob-content">
+    <img class="hero-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily Aesthetic & Beauty Clinic">
+    <p class="page-eyebrow">Tavistock, Devon</p>
+    <h1 class="hero-title">Daisy&#8209;Lily<em>Aesthetic &amp; Beauty</em></h1>
+    <p class="hero-tagline">A family run, nurse prescriber led clinic offering aesthetic, beauty and holistic treatments.</p>
+    <a class="hero-cta" href="book.html">Book Your Appointment</a>
+  </div>
+</div>
+
+<div class="petal-accent">· · ·</div>
+
+<!-- WELCOME -->
+<div class="max-w px py-md">
+  <div class="card">
+    <p class="section-label">Welcome</p>
+    <h2 class="section-title">Your Account</h2>
+    <p class="text-sm text-muted" style="margin-bottom:22px;line-height:1.7;">Register to manage your bookings and receive exclusive offers, or log in to view your upcoming appointments.</p>
+    <div class="grid-2" style="margin-bottom:12px;">
+      <a class="btn btn-secondary" href="register.html">Create Account</a>
+      <a class="btn btn-ghost" href="login.html">Log In</a>
+    </div>
+    <a class="btn btn-primary btn-pill" href="book.html">Book an Appointment →</a>
+  </div>
+</div>
+
+<div class="petal-accent" style="padding:10px 0;">✦</div>
+
+<!-- HOURS & INFO -->
+<div class="max-w px py-md">
+  <div class="card">
+    <p class="section-label">Find Us</p>
+    <h2 class="section-title">Opening Hours</h2>
+
+    <div>
+      <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time">09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">09:00 – 18:00</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span></div>
+    </div>
+
+    <div class="address-block">
+      <p class="section-label" style="margin-bottom:8px;">Address</p>
+      <p>First &amp; Second Floors<br>5 West Street<br>Tavistock, Devon<br>PL19 8AD</p>
+    </div>
+
+    <div class="social-row">
+      <a class="social-pill" href="https://www.instagram.com/daisy_lily_aesthetics/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a class="social-pill" href="https://www.facebook.com/DaisyLilyTavistock" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
+  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
+  <span class="footer-sep">·</span>
+  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
+  <span class="footer-sep">·</span>
+  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
+  <br>Powered by Book in Beautiful
+</footer>
+
+<!-- FAB -->
+<a class="fab" href="book.html">Book Now</a>
+
+</body>
+</html>

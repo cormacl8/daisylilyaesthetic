@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Create Account · Daisy-Lily</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.form-section { padding: 12px 18px 60px; max-width: 580px; margin: 0 auto; }
+
+.prefs-group {
+  background: var(--blush); border-radius: var(--radius-sm);
+  padding: 16px; border: 1px solid var(--petal); margin-bottom: 6px;
+}
+.prefs-label {
+  font-size: 12px; font-weight: 500; letter-spacing: .07em;
+  color: var(--plum); margin-bottom: 10px; display: block;
+}
+.prefs-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.prefs-row:last-child { margin-bottom: 0; }
+.prefs-name { font-size: 13.5px; color: var(--plum); }
+.prefs-options { display: flex; gap: 8px; }
+.toggle-btn {
+  padding: 7px 14px; border-radius: var(--radius-pill);
+  border: 1.5px solid var(--petal); background: var(--white);
+  font-family: var(--font-body); font-size: 12px; font-weight: 400;
+  color: var(--plum); cursor: pointer; transition: all .15s;
+}
+.toggle-btn.active { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
+.toggle-btn:hover:not(.active) { border-color: var(--rose); background: var(--petal); }
+
+.policy-box {
+  background: var(--blush); border: 1px solid var(--petal);
+  border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 18px;
+  font-size: 13px; line-height: 1.6; color: var(--plum); opacity: .85;
+}
+.policy-box a { color: var(--mauve); text-decoration: underline; }
+
+.form-footer { text-align: center; margin-top: 18px; font-size: 13px; }
+.form-footer a { color: var(--mauve); text-decoration: none; font-weight: 500; }
+.form-footer a:hover { text-decoration: underline; }
+
+.step-indicator {
+  display: flex; justify-content: center; gap: 8px; margin-bottom: 28px;
+}
+.step { width: 8px; height: 8px; border-radius: 50%; background: var(--petal); }
+.step.active { background: var(--mauve); width: 24px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo-wrap" href="index.html">
+      <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
+      <span class="nav-brand">Daisy‑Lily</span>
+    </a>
+    <div class="nav-links">
+      <a href="gallery.html">Gallery</a>
+      <a href="login.html">Login</a>
+      <a class="nav-cta" href="book.html">Book</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header blob-container">
+  <div class="blob blob-tr" style="opacity:.35;"></div>
+  <div class="blob-content">
+    <p class="page-eyebrow">Join Us</p>
+    <h1 class="page-title">Create <em>Account</em></h1>
+    <p class="page-sub">Register to manage appointments and receive exclusive offers.</p>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-section">
+  <div class="card">
+
+    <div class="step-indicator">
+      <div class="step active"></div>
+      <div class="step"></div>
+      <div class="step"></div>
+    </div>
+
+    <form action="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users" method="post" id="register-form">
+
+      <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input type="text" id="full-name" name="user[name]" placeholder="Your full name" autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="user[email]" placeholder="hello@example.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Mobile Number</label>
+        <input type="tel" id="phone" name="user[phone]" placeholder="+44 7700 000000" autocomplete="tel">
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="user[date_of_birth]">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password <span style="font-weight:300;text-transform:none;letter-spacing:0;">(min. 6 characters)</span></label>
+        <input type="password" id="password" name="user[password]" placeholder="Create a password" autocomplete="new-password">
+      </div>
+
+      <div class="form-group" style="margin-bottom:22px;">
+        <label for="password-confirm">Confirm Password</label>
+        <input type="password" id="password-confirm" name="user[password_confirmation]" placeholder="Repeat your password" autocomplete="new-password">
+      </div>
+
+      <!-- Contact preferences -->
+      <div class="prefs-group">
+        <span class="prefs-label">Contact Preferences</span>
+        <p style="font-size:12.5px;opacity:.75;margin-bottom:12px;line-height:1.5;">Would you like to receive news and exclusive offers? You can opt out at any time.</p>
+        <div class="prefs-row">
+          <span class="prefs-name">Email updates</span>
+          <div class="prefs-options">
+            <button type="button" class="toggle-btn active" onclick="togglePref(this,'email_yes','email_no')">Yes</button>
+            <button type="button" class="toggle-btn" onclick="togglePref(this,'email_no','email_yes')">No</button>
+          </div>
+        </div>
+        <div class="prefs-row">
+          <span class="prefs-name">SMS updates</span>
+          <div class="prefs-options">
+            <button type="button" class="toggle-btn active" onclick="togglePref(this,'sms_yes','sms_no')">Yes</button>
+            <button type="button" class="toggle-btn" onclick="togglePref(this,'sms_no','sms_yes')">No</button>
+          </div>
+        </div>
+        <input type="hidden" name="user[email_marketing]" id="email_yes" value="1">
+        <input type="hidden" name="user[sms_marketing]" id="sms_yes" value="1">
+      </div>
+
+      <!-- Policies -->
+      <div class="policy-box">
+        Please read our
+        <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy" target="_blank">Privacy Policy</a>
+        and
+        <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions" target="_blank">Terms &amp; Conditions</a>
+        before registering.
+      </div>
+
+      <div class="form-group" style="margin-bottom:22px;">
+        <label class="check-label">
+          <input type="checkbox" id="agree" name="user[terms]" required>
+          <span>I have read, understand and agree to the terms above</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-pill">Create My Account</button>
+
+    </form>
+
+    <div class="divider mt-md"><span>Already have an account?</span></div>
+
+    <div class="form-footer">
+      <a href="login.html">Log in here →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
+  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
+  <span class="footer-sep">·</span>
+  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
+  <span class="footer-sep">·</span>
+  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
+</footer>
+
+<script>
+function togglePref(btn, activeId, inactiveId) {
+  const siblings = btn.parentElement.querySelectorAll('.toggle-btn');
+  siblings.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
