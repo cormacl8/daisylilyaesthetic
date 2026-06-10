@@ -1,143 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Log In · Daisy-Lily</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.form-section { padding: 12px 18px 60px; max-width: 580px; margin: 0 auto; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In · Daisy-Lily</title>
+  <meta name="description" content="Log in to your Daisy-Lily account to manage bookings, view upcoming appointments, and access exclusive member offers.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/sign_in">
+  <meta property="og:title"       content="Log In · Daisy-Lily">
+  <meta property="og:description" content="Access your Daisy-Lily account to manage bookings and appointments.">
+  <meta property="og:image"       content="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg">
+  <link rel="icon" type="image/jpeg" href="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-section { padding: 12px 18px 60px; max-width: 580px; margin: 0 auto; }
 
-.form-footer { text-align: center; font-size: 13px; margin-top: 6px; }
-.form-footer a { color: var(--mauve); text-decoration: none; font-weight: 500; }
-.form-footer a:hover { text-decoration: underline; }
+    .form-footer { text-align: center; font-size: 13px; margin-top: 6px; }
+    .form-footer a { color: var(--mauve); text-decoration: none; font-weight: 500; }
+    .form-footer a:hover { text-decoration: underline; }
 
-.keep-logged {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13.5px; margin-bottom: 22px; cursor: pointer;
-}
-.keep-logged input { accent-color: var(--mauve); width: 16px; height: 16px; flex-shrink: 0; }
+    .keep-logged {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13.5px; margin-bottom: 22px; cursor: pointer;
+    }
+    .keep-logged input { accent-color: var(--mauve); width: 16px; height: 16px; flex-shrink: 0; }
 
-/* password visibility toggle */
-.input-wrap { position: relative; }
-.input-wrap input { padding-right: 48px; }
-.show-pw {
-  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer;
-  color: var(--rose); font-size: 18px; line-height: 1; padding: 0;
-  transition: color .15s;
-}
-.show-pw:hover { color: var(--mauve); }
+    .forgot-link {
+      text-align: right; font-size: 12px; margin-top: -12px; margin-bottom: 20px;
+    }
+    .forgot-link a { color: var(--mauve); text-decoration: none; }
+    .forgot-link a:hover { text-decoration: underline; }
 
-.forgot-link {
-  text-align: right; font-size: 12px; margin-top: -12px; margin-bottom: 20px;
-}
-.forgot-link a { color: var(--mauve); text-decoration: none; }
-.forgot-link a:hover { text-decoration: underline; }
+    .welcome-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--petal); border-radius: var(--radius-pill);
+      padding: 10px 18px; margin-bottom: 26px;
+      width: fit-content; margin-left: auto; margin-right: auto;
+    }
+    .welcome-pill img {
+      width: 32px; height: 32px; border-radius: 50%;
+      object-fit: cover; border: 1.5px solid var(--rose);
+    }
+    .welcome-pill span { font-size: 13px; color: var(--plum); }
 
-/* welcome back pill */
-.welcome-pill {
-  display: flex; align-items: center; gap: 10px;
-  background: var(--petal); border-radius: var(--radius-pill);
-  padding: 10px 18px; margin-bottom: 26px; width: fit-content; margin-left: auto; margin-right: auto;
-}
-.welcome-pill img {
-  width: 32px; height: 32px; border-radius: 50%; object-fit: cover;
-  border: 1.5px solid var(--rose);
-}
-.welcome-pill span { font-size: 13px; color: var(--plum); }
-</style>
+    /* form-level error banner */
+    .form-error-banner {
+      background: var(--error-bg); border: 1px solid var(--error);
+      border-radius: var(--radius-sm); padding: 12px 16px;
+      font-size: 13px; color: var(--error); margin-bottom: 18px;
+      display: none;
+    }
+    .form-error-banner.visible { display: block; }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="nav-logo-wrap" href="index.html">
-      <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
-      <span class="nav-brand">Daisy‑Lily</span>
-    </a>
-    <div class="nav-links">
-      <a href="gallery.html">Gallery</a>
-      <a href="register.html">Register</a>
-      <a class="nav-cta" href="book.html">Book</a>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo-wrap" href="index.html">
+        <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
+        <span class="nav-brand">Daisy&#8209;Lily</span>
+      </a>
+      <div class="nav-links">
+        <a href="gallery.html">Gallery</a>
+        <a href="register.html">Register</a>
+        <a class="nav-cta" href="book.html">Book</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header blob-container">
+    <div class="blob blob-tr" style="opacity:.35;"></div>
+    <div class="blob-content">
+      <p class="page-eyebrow">Welcome Back</p>
+      <h1 class="page-title"><em>Log In</em></h1>
+      <p class="page-sub">Access your bookings and account details.</p>
     </div>
   </div>
-</nav>
 
-<!-- HEADER -->
-<div class="page-header blob-container">
-  <div class="blob blob-tr" style="opacity:.35;"></div>
-  <div class="blob-content">
-    <p class="page-eyebrow">Welcome Back</p>
-    <h1 class="page-title"><em>Log In</em></h1>
-    <p class="page-sub">Access your bookings and account details.</p>
-  </div>
-</div>
+  <!-- FORM -->
+  <div class="form-section">
+    <div class="card">
 
-<!-- FORM -->
-<div class="form-section">
-  <div class="card">
-
-    <div class="welcome-pill">
-      <img src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="">
-      <span>Daisy-Lily Member Login</span>
-    </div>
-
-    <form action="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/sign_in" method="post">
-
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="user[email]" placeholder="hello@example.com" autocomplete="email">
+      <div class="welcome-pill">
+        <img src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="">
+        <span>Daisy-Lily Member Login</span>
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <div class="input-wrap">
-          <input type="password" id="password" name="user[password]" placeholder="Your password" autocomplete="current-password">
-          <button type="button" class="show-pw" onclick="togglePw()" title="Show/hide password">👁</button>
+      <div class="form-error-banner" id="formError" role="alert">
+        Please check your email and password and try again.
+      </div>
+
+      <form id="loginForm" novalidate
+            action="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/sign_in"
+            method="post">
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="user[email]"
+                 placeholder="hello@example.com" autocomplete="email">
+          <span class="field-error" id="emailError">Please enter a valid email address.</span>
         </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="password" name="user[password]"
+                   placeholder="Your password" autocomplete="current-password">
+            <button type="button" class="show-pw" id="togglePw" aria-label="Show password">
+              <!-- Eye icon — open state (default) -->
+              <svg id="eyeOpen" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <!-- Eye-off icon — hidden state -->
+              <svg id="eyeOff" viewBox="0 0 24 24" aria-hidden="true" style="display:none;">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+          <span class="field-error" id="passwordError">Please enter your password.</span>
+        </div>
+
+        <div class="forgot-link">
+          <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/password/new">
+            Forgot your password?
+          </a>
+        </div>
+
+        <label class="keep-logged">
+          <input type="checkbox" name="user[remember_me]" value="1">
+          Keep me logged in
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-pill">Log In</button>
+
+      </form>
+
+      <div class="divider mt-md"><span>New here?</span></div>
+      <a class="btn btn-secondary" href="register.html">Create a free account →</a>
+
+      <div class="form-footer mt-md">
+        <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/confirmation/new">
+          Didn't receive your confirmation email?
+        </a>
       </div>
 
-      <div class="forgot-link">
-        <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/password/new">Forgot your password?</a>
-      </div>
-
-      <label class="keep-logged">
-        <input type="checkbox" name="user[remember_me]" value="1">
-        Keep me logged in
-      </label>
-
-      <button type="submit" class="btn btn-primary btn-pill">Log In</button>
-
-    </form>
-
-    <div class="divider mt-md"><span>New here?</span></div>
-
-    <a class="btn btn-secondary" href="register.html">Create a free account →</a>
-
-    <div class="form-footer mt-md">
-      <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users/confirmation/new">Didn't receive confirmation email?</a>
     </div>
-
   </div>
-</div>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
-  <span class="footer-sep">·</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
-  <span class="footer-sep">·</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
-</footer>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
+  </footer>
 
-<script>
-function togglePw() {
-  const pw = document.getElementById('password');
-  pw.type = pw.type === 'password' ? 'text' : 'password';
-}
-</script>
+  <script>
+  (() => {
+    'use strict';
+
+    /* ── PASSWORD VISIBILITY TOGGLE ─────────────────────────────────── */
+    const pwInput  = document.getElementById('password');
+    const toggleBtn = document.getElementById('togglePw');
+    const eyeOpen  = document.getElementById('eyeOpen');
+    const eyeOff   = document.getElementById('eyeOff');
+
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = pwInput.type === 'password';
+      pwInput.type        = isHidden ? 'text' : 'password';
+      eyeOpen.style.display = isHidden ? 'none'  : '';
+      eyeOff.style.display  = isHidden ? ''      : 'none';
+      toggleBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
+
+    /* ── CLIENT-SIDE VALIDATION ──────────────────────────────────────── */
+    const form         = document.getElementById('loginForm');
+    const emailInput   = document.getElementById('email');
+    const emailError   = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const formError    = document.getElementById('formError');
+
+    function clearErrors() {
+      [emailInput, pwInput].forEach(el => el.classList.remove('input-error'));
+      [emailError, passwordError].forEach(el => el.classList.remove('visible'));
+      formError.classList.remove('visible');
+    }
+
+    function validateEmail(value) {
+      // RFC-5321 compatible basic check
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+    }
+
+    form.addEventListener('submit', e => {
+      clearErrors();
+      let valid = true;
+
+      if (!validateEmail(emailInput.value)) {
+        emailInput.classList.add('input-error');
+        emailError.classList.add('visible');
+        emailInput.focus();
+        valid = false;
+      }
+
+      if (pwInput.value.trim() === '') {
+        pwInput.classList.add('input-error');
+        passwordError.classList.add('visible');
+        if (valid) pwInput.focus(); // only steal focus if email was fine
+        valid = false;
+      }
+
+      if (!valid) {
+        e.preventDefault();
+        formError.classList.add('visible');
+      }
+    });
+
+    // clear individual field error as user corrects it
+    emailInput.addEventListener('input', () => {
+      if (validateEmail(emailInput.value)) {
+        emailInput.classList.remove('input-error');
+        emailError.classList.remove('visible');
+      }
+    });
+
+    pwInput.addEventListener('input', () => {
+      if (pwInput.value.trim() !== '') {
+        pwInput.classList.remove('input-error');
+        passwordError.classList.remove('visible');
+      }
+    });
+
+  })();
+  </script>
 </body>
 </html>

@@ -1,188 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Create Account · Daisy-Lily</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.form-section { padding: 12px 18px 60px; max-width: 580px; margin: 0 auto; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account · Daisy-Lily</title>
+  <meta name="description" content="Create a free Daisy-Lily account to manage your appointments, track your treatment history, and receive exclusive offers from our Tavistock clinic.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users">
+  <meta property="og:title"       content="Create Account · Daisy-Lily">
+  <meta property="og:description" content="Join Daisy-Lily to manage bookings and receive exclusive member offers from our Tavistock clinic.">
+  <meta property="og:image"       content="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg">
+  <link rel="icon" type="image/jpeg" href="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .form-section { padding: 12px 18px 60px; max-width: 580px; margin: 0 auto; }
 
-.prefs-group {
-  background: var(--blush); border-radius: var(--radius-sm);
-  padding: 16px; border: 1px solid var(--petal); margin-bottom: 6px;
-}
-.prefs-label {
-  font-size: 12px; font-weight: 500; letter-spacing: .07em;
-  color: var(--plum); margin-bottom: 10px; display: block;
-}
-.prefs-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.prefs-row:last-child { margin-bottom: 0; }
-.prefs-name { font-size: 13.5px; color: var(--plum); }
-.prefs-options { display: flex; gap: 8px; }
-.toggle-btn {
-  padding: 7px 14px; border-radius: var(--radius-pill);
-  border: 1.5px solid var(--petal); background: var(--white);
-  font-family: var(--font-body); font-size: 12px; font-weight: 400;
-  color: var(--plum); cursor: pointer; transition: all .15s;
-}
-.toggle-btn.active { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
-.toggle-btn:hover:not(.active) { border-color: var(--rose); background: var(--petal); }
+    /* marketing preferences */
+    .prefs-group {
+      background: var(--blush); border-radius: var(--radius-sm);
+      padding: 16px; border: 1px solid var(--petal); margin-bottom: 18px;
+    }
+    .prefs-label {
+      font-size: 12px; font-weight: 500; letter-spacing: .07em;
+      color: var(--plum); margin-bottom: 6px; display: block;
+    }
+    .prefs-hint {
+      font-size: 12.5px; opacity: .75; margin-bottom: 12px; line-height: 1.5;
+    }
+    .prefs-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .prefs-row:last-of-type { margin-bottom: 0; }
+    .prefs-name { font-size: 13.5px; color: var(--plum); }
 
-.policy-box {
-  background: var(--blush); border: 1px solid var(--petal);
-  border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 18px;
-  font-size: 13px; line-height: 1.6; color: var(--plum); opacity: .85;
-}
-.policy-box a { color: var(--mauve); text-decoration: underline; }
+    .toggle-group { display: flex; gap: 8px; }
+    .toggle-btn {
+      padding: 7px 14px; border-radius: var(--radius-pill);
+      border: 1.5px solid var(--petal); background: var(--white);
+      font-family: var(--font-body); font-size: 12px; font-weight: 400;
+      color: var(--plum); cursor: pointer; transition: all .15s;
+    }
+    .toggle-btn.active        { background: var(--mauve); color: var(--white); border-color: var(--mauve); }
+    .toggle-btn:hover:not(.active) { border-color: var(--rose); background: var(--petal); }
 
-.form-footer { text-align: center; margin-top: 18px; font-size: 13px; }
-.form-footer a { color: var(--mauve); text-decoration: none; font-weight: 500; }
-.form-footer a:hover { text-decoration: underline; }
+    /* policy box */
+    .policy-box {
+      background: var(--blush); border: 1px solid var(--petal);
+      border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 18px;
+      font-size: 13px; line-height: 1.6; color: var(--plum); opacity: .85;
+    }
+    .policy-box a { color: var(--mauve); text-decoration: underline; }
 
-.step-indicator {
-  display: flex; justify-content: center; gap: 8px; margin-bottom: 28px;
-}
-.step { width: 8px; height: 8px; border-radius: 50%; background: var(--petal); }
-.step.active { background: var(--mauve); width: 24px; border-radius: 4px; }
-</style>
+    .form-footer { text-align: center; margin-top: 18px; font-size: 13px; }
+    .form-footer a { color: var(--mauve); text-decoration: none; font-weight: 500; }
+    .form-footer a:hover { text-decoration: underline; }
+
+    /* form-level error banner */
+    .form-error-banner {
+      background: var(--error-bg); border: 1px solid var(--error);
+      border-radius: var(--radius-sm); padding: 12px 16px;
+      font-size: 13px; color: var(--error); margin-bottom: 18px;
+      display: none;
+    }
+    .form-error-banner.visible { display: block; }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="nav-logo-wrap" href="index.html">
-      <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
-      <span class="nav-brand">Daisy‑Lily</span>
-    </a>
-    <div class="nav-links">
-      <a href="gallery.html">Gallery</a>
-      <a href="login.html">Login</a>
-      <a class="nav-cta" href="book.html">Book</a>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo-wrap" href="index.html">
+        <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
+        <span class="nav-brand">Daisy&#8209;Lily</span>
+      </a>
+      <div class="nav-links">
+        <a href="gallery.html">Gallery</a>
+        <a href="login.html">Login</a>
+        <a class="nav-cta" href="book.html">Book</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header blob-container">
+    <div class="blob blob-tr" style="opacity:.35;"></div>
+    <div class="blob-content">
+      <p class="page-eyebrow">Join Us</p>
+      <h1 class="page-title">Create <em>Account</em></h1>
+      <p class="page-sub">Register to manage appointments and receive exclusive offers.</p>
     </div>
   </div>
-</nav>
 
-<!-- HEADER -->
-<div class="page-header blob-container">
-  <div class="blob blob-tr" style="opacity:.35;"></div>
-  <div class="blob-content">
-    <p class="page-eyebrow">Join Us</p>
-    <h1 class="page-title">Create <em>Account</em></h1>
-    <p class="page-sub">Register to manage appointments and receive exclusive offers.</p>
-  </div>
-</div>
+  <!-- FORM -->
+  <div class="form-section">
+    <div class="card">
 
-<!-- FORM -->
-<div class="form-section">
-  <div class="card">
+      <div class="form-error-banner" id="formErrorBanner" role="alert"></div>
 
-    <div class="step-indicator">
-      <div class="step active"></div>
-      <div class="step"></div>
-      <div class="step"></div>
-    </div>
+      <form id="registerForm" novalidate
+            action="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users"
+            method="post">
 
-    <form action="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/users" method="post" id="register-form">
-
-      <div class="form-group">
-        <label for="full-name">Full Name</label>
-        <input type="text" id="full-name" name="user[name]" placeholder="Your full name" autocomplete="name">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="user[email]" placeholder="hello@example.com" autocomplete="email">
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Mobile Number</label>
-        <input type="tel" id="phone" name="user[phone]" placeholder="+44 7700 000000" autocomplete="tel">
-      </div>
-
-      <div class="form-group">
-        <label for="dob">Date of Birth</label>
-        <input type="date" id="dob" name="user[date_of_birth]">
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password <span style="font-weight:300;text-transform:none;letter-spacing:0;">(min. 6 characters)</span></label>
-        <input type="password" id="password" name="user[password]" placeholder="Create a password" autocomplete="new-password">
-      </div>
-
-      <div class="form-group" style="margin-bottom:22px;">
-        <label for="password-confirm">Confirm Password</label>
-        <input type="password" id="password-confirm" name="user[password_confirmation]" placeholder="Repeat your password" autocomplete="new-password">
-      </div>
-
-      <!-- Contact preferences -->
-      <div class="prefs-group">
-        <span class="prefs-label">Contact Preferences</span>
-        <p style="font-size:12.5px;opacity:.75;margin-bottom:12px;line-height:1.5;">Would you like to receive news and exclusive offers? You can opt out at any time.</p>
-        <div class="prefs-row">
-          <span class="prefs-name">Email updates</span>
-          <div class="prefs-options">
-            <button type="button" class="toggle-btn active" onclick="togglePref(this,'email_yes','email_no')">Yes</button>
-            <button type="button" class="toggle-btn" onclick="togglePref(this,'email_no','email_yes')">No</button>
-          </div>
+        <!-- Full name -->
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="user[name]"
+                 placeholder="Your full name" autocomplete="name">
+          <span class="field-error" id="fullNameError">Please enter your full name.</span>
         </div>
-        <div class="prefs-row">
-          <span class="prefs-name">SMS updates</span>
-          <div class="prefs-options">
-            <button type="button" class="toggle-btn active" onclick="togglePref(this,'sms_yes','sms_no')">Yes</button>
-            <button type="button" class="toggle-btn" onclick="togglePref(this,'sms_no','sms_yes')">No</button>
-          </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="user[email]"
+                 placeholder="hello@example.com" autocomplete="email">
+          <span class="field-error" id="emailError">Please enter a valid email address.</span>
         </div>
-        <input type="hidden" name="user[email_marketing]" id="email_yes" value="1">
-        <input type="hidden" name="user[sms_marketing]" id="sms_yes" value="1">
+
+        <!-- Phone -->
+        <div class="form-group">
+          <label for="phone">Mobile Number</label>
+          <input type="tel" id="phone" name="user[phone]"
+                 placeholder="+44 7700 000000" autocomplete="tel">
+          <span class="field-error" id="phoneError">Please enter a valid UK phone number.</span>
+        </div>
+
+        <!-- DOB -->
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="user[date_of_birth]">
+          <span class="field-error" id="dobError">Please enter your date of birth.</span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">
+            Password
+            <span style="font-weight:300;text-transform:none;letter-spacing:0;">(min. 6 characters)</span>
+          </label>
+          <div class="input-wrap">
+            <input type="password" id="password" name="user[password]"
+                   placeholder="Create a password" autocomplete="new-password">
+            <button type="button" class="show-pw" id="togglePw" aria-label="Show password">
+              <svg id="eyeOpen" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg id="eyeOff" viewBox="0 0 24 24" aria-hidden="true" style="display:none;">
+                <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a18.45 18.45 0 0 1 5.06-5.94"/>
+                <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 7 11 7a18.5 18.5 0 0 1-2.16 3.19"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+          <span class="field-error" id="passwordError">Password must be at least 6 characters.</span>
+        </div>
+
+        <!-- Confirm password -->
+        <div class="form-group" style="margin-bottom:22px;">
+          <label for="passwordConfirm">Confirm Password</label>
+          <input type="password" id="passwordConfirm" name="user[password_confirmation]"
+                 placeholder="Repeat your password" autocomplete="new-password">
+          <span class="field-error" id="passwordConfirmError">Passwords do not match.</span>
+        </div>
+
+        <!-- Marketing preferences -->
+        <div class="prefs-group">
+          <span class="prefs-label">Contact Preferences</span>
+          <p class="prefs-hint">Would you like to receive news and exclusive offers? You can opt out at any time.</p>
+
+          <div class="prefs-row">
+            <span class="prefs-name">Email updates</span>
+            <div class="toggle-group" role="group" aria-label="Email marketing preference">
+              <button type="button" class="toggle-btn active"
+                      data-field="emailMarketing" data-value="1"
+                      aria-pressed="true">Yes</button>
+              <button type="button" class="toggle-btn"
+                      data-field="emailMarketing" data-value="0"
+                      aria-pressed="false">No</button>
+            </div>
+          </div>
+          <input type="hidden" name="user[email_marketing]" id="emailMarketing" value="1">
+
+          <div class="prefs-row">
+            <span class="prefs-name">SMS updates</span>
+            <div class="toggle-group" role="group" aria-label="SMS marketing preference">
+              <button type="button" class="toggle-btn active"
+                      data-field="smsMarketing" data-value="1"
+                      aria-pressed="true">Yes</button>
+              <button type="button" class="toggle-btn"
+                      data-field="smsMarketing" data-value="0"
+                      aria-pressed="false">No</button>
+            </div>
+          </div>
+          <input type="hidden" name="user[sms_marketing]" id="smsMarketing" value="1">
+        </div>
+
+        <!-- Policies -->
+        <div class="policy-box">
+          Please read our
+          <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy" target="_blank">Privacy Policy</a>
+          and
+          <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions" target="_blank">Terms &amp; Conditions</a>
+          before registering.
+        </div>
+
+        <div class="form-group" style="margin-bottom:22px;">
+          <label class="check-label">
+            <input type="checkbox" id="agree" name="user[terms]">
+            <span>I have read, understand and agree to the terms above</span>
+          </label>
+          <span class="field-error" id="agreeError">You must agree to the terms to register.</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-pill">Create My Account</button>
+
+      </form>
+
+      <div class="divider mt-md"><span>Already have an account?</span></div>
+
+      <div class="form-footer">
+        <a href="login.html">Log in here →</a>
       </div>
 
-      <!-- Policies -->
-      <div class="policy-box">
-        Please read our
-        <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy" target="_blank">Privacy Policy</a>
-        and
-        <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions" target="_blank">Terms &amp; Conditions</a>
-        before registering.
-      </div>
-
-      <div class="form-group" style="margin-bottom:22px;">
-        <label class="check-label">
-          <input type="checkbox" id="agree" name="user[terms]" required>
-          <span>I have read, understand and agree to the terms above</span>
-        </label>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-pill">Create My Account</button>
-
-    </form>
-
-    <div class="divider mt-md"><span>Already have an account?</span></div>
-
-    <div class="form-footer">
-      <a href="login.html">Log in here →</a>
     </div>
-
   </div>
-</div>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
-  <span class="footer-sep">·</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
-  <span class="footer-sep">·</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
-</footer>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
+  </footer>
 
-<script>
-function togglePref(btn, activeId, inactiveId) {
-  const siblings = btn.parentElement.querySelectorAll('.toggle-btn');
-  siblings.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-</script>
+  <script>
+  (() => {
+    'use strict';
+
+    /* ── PASSWORD VISIBILITY ─────────────────────────────────────────── */
+    const pwInput   = document.getElementById('password');
+    const toggleBtn = document.getElementById('togglePw');
+    const eyeOpen   = document.getElementById('eyeOpen');
+    const eyeOff    = document.getElementById('eyeOff');
+
+    toggleBtn.addEventListener('click', () => {
+      const isHidden = pwInput.type === 'password';
+      pwInput.type          = isHidden ? 'text'    : 'password';
+      eyeOpen.style.display = isHidden ? 'none'    : '';
+      eyeOff.style.display  = isHidden ? ''        : 'none';
+      toggleBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
+
+    /* ── MARKETING PREFERENCE TOGGLES ───────────────────────────────── */
+    /*
+     * Each toggle button carries data-field (the hidden input id) and
+     * data-value ("1" or "0"). Clicking a button within a group:
+     *   1. Marks itself active, siblings inactive.
+     *   2. Writes its value into the corresponding hidden input.
+     *   3. Updates aria-pressed for assistive technology.
+     */
+    document.querySelectorAll('.toggle-group').forEach(group => {
+      group.addEventListener('click', e => {
+        const btn = e.target.closest('.toggle-btn');
+        if (!btn) return;
+
+        const field = btn.dataset.field;
+        const value = btn.dataset.value;
+
+        // update hidden input
+        document.getElementById(field).value = value;
+
+        // update button states within this group
+        group.querySelectorAll('.toggle-btn').forEach(b => {
+          const isActive = b === btn;
+          b.classList.toggle('active', isActive);
+          b.setAttribute('aria-pressed', String(isActive));
+        });
+      });
+    });
+
+    /* ── VALIDATION HELPERS ─────────────────────────────────────────── */
+    const form        = document.getElementById('registerForm');
+    const banner      = document.getElementById('formErrorBanner');
+
+    const fields = {
+      fullName:        { el: document.getElementById('fullName'),        err: document.getElementById('fullNameError') },
+      email:           { el: document.getElementById('email'),           err: document.getElementById('emailError') },
+      phone:           { el: document.getElementById('phone'),           err: document.getElementById('phoneError') },
+      dob:             { el: document.getElementById('dob'),             err: document.getElementById('dobError') },
+      password:        { el: pwInput,                                    err: document.getElementById('passwordError') },
+      passwordConfirm: { el: document.getElementById('passwordConfirm'),  err: document.getElementById('passwordConfirmError') },
+      agree:           { el: document.getElementById('agree'),           err: document.getElementById('agreeError') },
+    };
+
+    function showError(key, message) {
+      const { el, err } = fields[key];
+      el.classList.add('input-error');
+      if (message) err.textContent = message;
+      err.classList.add('visible');
+    }
+
+    function clearError(key) {
+      const { el, err } = fields[key];
+      el.classList.remove('input-error');
+      err.classList.remove('visible');
+    }
+
+    function clearAll() {
+      Object.keys(fields).forEach(clearError);
+      banner.classList.remove('visible');
+    }
+
+    function validateEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+    }
+
+    function validatePhone(v) {
+      // accepts UK formats: 01822 851911, +441822851911, 07700 900000, etc.
+      return /^[\d\s\+\-\(\)]{7,20}$/.test(v.trim());
+    }
+
+    /* ── SUBMIT HANDLER ─────────────────────────────────────────────── */
+    form.addEventListener('submit', e => {
+      clearAll();
+
+      const errors = [];
+
+      if (fields.fullName.el.value.trim().length < 2) {
+        showError('fullName');
+        errors.push('fullName');
+      }
+
+      if (!validateEmail(fields.email.el.value)) {
+        showError('email');
+        errors.push('email');
+      }
+
+      if (!validatePhone(fields.phone.el.value)) {
+        showError('phone');
+        errors.push('phone');
+      }
+
+      if (!fields.dob.el.value) {
+        showError('dob');
+        errors.push('dob');
+      }
+
+      if (fields.password.el.value.length < 6) {
+        showError('password');
+        errors.push('password');
+      }
+
+      if (fields.passwordConfirm.el.value !== fields.password.el.value) {
+        showError('passwordConfirm');
+        errors.push('passwordConfirm');
+      }
+
+      if (!fields.agree.el.checked) {
+        showError('agree');
+        errors.push('agree');
+      }
+
+      if (errors.length > 0) {
+        e.preventDefault();
+        const count = errors.length;
+        banner.textContent = `Please fix ${count} error${count > 1 ? 's' : ''} below before continuing.`;
+        banner.classList.add('visible');
+        // scroll to and focus the first invalid field
+        const firstField = fields[errors[0]].el;
+        firstField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstField.focus();
+      }
+    });
+
+    /* ── LIVE CLEAR-ON-FIX ──────────────────────────────────────────── */
+    fields.fullName.el.addEventListener('input', () => {
+      if (fields.fullName.el.value.trim().length >= 2) clearError('fullName');
+    });
+    fields.email.el.addEventListener('input', () => {
+      if (validateEmail(fields.email.el.value)) clearError('email');
+    });
+    fields.phone.el.addEventListener('input', () => {
+      if (validatePhone(fields.phone.el.value)) clearError('phone');
+    });
+    fields.dob.el.addEventListener('change', () => {
+      if (fields.dob.el.value) clearError('dob');
+    });
+    fields.password.el.addEventListener('input', () => {
+      if (fields.password.el.value.length >= 6) clearError('password');
+    });
+    fields.passwordConfirm.el.addEventListener('input', () => {
+      if (fields.passwordConfirm.el.value === fields.password.el.value) clearError('passwordConfirm');
+    });
+    fields.agree.el.addEventListener('change', () => {
+      if (fields.agree.el.checked) clearError('agree');
+    });
+
+  })();
+  </script>
 </body>
 </html>

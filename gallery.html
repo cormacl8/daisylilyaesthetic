@@ -1,196 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Gallery · Daisy-Lily</title>
-<link rel="stylesheet" href="style.css">
-<style>
-/* ── GALLERY ── */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  padding: 0 18px 48px;
-  max-width: 580px;
-  margin: 0 auto;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery · Daisy-Lily</title>
+  <meta name="description" content="See the treatments and transformations at Daisy-Lily Aesthetic &amp; Beauty Clinic in Tavistock, Devon. More photos coming soon — follow us on Instagram for the latest looks.">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/gallery">
+  <meta property="og:title"       content="Gallery · Daisy-Lily">
+  <meta property="og:description" content="A glimpse of treatments and transformations at Daisy-Lily in Tavistock, Devon.">
+  <meta property="og:image"       content="https://cdn.nearcut.com/R94NK8/thumb_large_Daisy_header2.jpg">
+  <link rel="icon" type="image/jpeg" href="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 0 18px 48px;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      position: relative; overflow: hidden;
+      border-radius: var(--radius-md);
+      background: var(--petal);
+      border: 1px solid var(--petal);
+      box-shadow: var(--shadow-soft);
+      transition: transform .22s, box-shadow .22s;
+      cursor: pointer;
+    }
+    .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-med); }
+    .gallery-item:focus-visible { outline: 2px solid var(--mauve); outline-offset: 3px; }
 
-.gallery-item {
-  position: relative; overflow: hidden;
-  border-radius: var(--radius-md);
-  background: var(--petal);
-  aspect-ratio: 1;
-  border: 1px solid var(--petal);
-  box-shadow: var(--shadow-soft);
-  transition: transform .22s, box-shadow .22s;
-  cursor: pointer;
-}
-.gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-med); }
-.gallery-item img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  transition: transform .4s;
-}
-.gallery-item:hover img { transform: scale(1.05); }
-.gallery-item-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(74,40,50,.45) 0%, transparent 60%);
-  opacity: 0; transition: opacity .22s;
-  display: flex; align-items: flex-end; padding: 14px;
-}
-.gallery-item:hover .gallery-item-overlay { opacity: 1; }
-.gallery-item-label {
-  color: var(--white); font-size: 12px; font-weight: 500;
-  letter-spacing: .06em;
-}
+    .gallery-item.featured { grid-column: span 2; aspect-ratio: 16 / 9; }
 
-/* featured (full width) */
-.gallery-item.featured {
-  grid-column: span 2;
-  aspect-ratio: 16/9;
-}
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .4s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); }
 
-/* placeholder for future images */
-.gallery-placeholder {
-  background: linear-gradient(135deg, var(--petal), var(--rose));
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 8px;
-}
-.gallery-placeholder .pl-icon { font-size: 28px; opacity: .4; }
-.gallery-placeholder .pl-text { font-size: 11px; opacity: .5; letter-spacing: .08em; }
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(74,40,50,.45) 0%, transparent 60%);
+      opacity: 0; transition: opacity .22s;
+      display: flex; align-items: flex-end; padding: 14px;
+    }
+    .gallery-item:hover .gallery-item-overlay,
+    .gallery-item:focus-visible .gallery-item-overlay { opacity: 1; }
+    .gallery-item-label { color: var(--white); font-size: 12px; font-weight: 500; letter-spacing: .06em; }
 
-/* lightbox */
-.lightbox {
-  position: fixed; inset: 0; z-index: 500;
-  background: rgba(74,40,50,.88); backdrop-filter: blur(8px);
-  display: none; align-items: center; justify-content: center;
-  padding: 24px;
-}
-.lightbox.open { display: flex; }
-.lightbox img {
-  max-width: 100%; max-height: 80vh;
-  border-radius: var(--radius-md); box-shadow: 0 20px 60px rgba(0,0,0,.4);
-}
-.lightbox-close {
-  position: absolute; top: 20px; right: 20px;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,.15); color: white; font-size: 20px;
-  border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: background .18s;
-}
-.lightbox-close:hover { background: rgba(255,255,255,.3); }
+    /* lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(74,40,50,.88); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center; padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 100%; max-height: 80vh;
+      border-radius: var(--radius-md); box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 20px;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,.15); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .18s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,.3); }
+    .lightbox-close svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 2.5; }
 
-/* more coming soon banner */
-.coming-soon {
-  text-align: center; padding: 28px 24px;
-  max-width: 580px; margin: 0 auto 40px;
-}
-.coming-soon p {
-  font-size: 13px; color: var(--plum); opacity: .7;
-  font-style: italic;
-}
-</style>
+    .instagram-cta {
+      text-align: center; padding: 0 24px 40px;
+      max-width: 580px; margin: 0 auto;
+    }
+    .instagram-cta p {
+      font-size: 13px; color: var(--plum); opacity: .7; font-style: italic;
+      margin-bottom: 16px;
+    }
+    .social-row { display: flex; gap: 10px; justify-content: center; }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav">
-  <div class="nav-inner">
-    <a class="nav-logo-wrap" href="index.html">
-      <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
-      <span class="nav-brand">Daisy‑Lily</span>
-    </a>
-    <div class="nav-links">
-      <a href="gallery.html" class="active">Gallery</a>
-      <a href="login.html">Login</a>
-      <a class="nav-cta" href="book.html">Book</a>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo-wrap" href="index.html">
+        <img class="nav-logo" src="https://cdn.nearcut.com/P3DWJY/logo_Daisy_Lily.jpg" alt="Daisy-Lily">
+        <span class="nav-brand">Daisy&#8209;Lily</span>
+      </a>
+      <div class="nav-links">
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="login.html">Login</a>
+        <a class="nav-cta" href="book.html">Book</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header blob-container">
+    <div class="blob blob-tr" style="opacity:.4;"></div>
+    <div class="blob-content">
+      <p class="page-eyebrow">Our Work</p>
+      <h1 class="page-title"><em>Gallery</em></h1>
+      <p class="page-sub">A glimpse of the treatments and transformations at Daisy-Lily.</p>
     </div>
   </div>
-</nav>
 
-<!-- HEADER -->
-<div class="page-header blob-container">
-  <div class="blob blob-tr" style="opacity:.4;"></div>
-  <div class="blob-content">
-    <p class="page-eyebrow">Our Work</p>
-    <h1 class="page-title"><em>Gallery</em></h1>
-    <p class="page-sub">A glimpse of the treatments and transformations at Daisy-Lily.</p>
-  </div>
-</div>
+  <!-- GALLERY -->
+  <div class="gallery-grid">
+    <div class="gallery-item featured" tabindex="0" role="button"
+         aria-label="View Daisy-Lily clinic photo"
+         data-src="https://cdn.nearcut.com/R94NK8/thumb_large_Daisy_header2.jpg">
+      <img src="https://cdn.nearcut.com/R94NK8/thumb_large_Daisy_header2.jpg"
+           alt="Inside the Daisy-Lily clinic">
+      <div class="gallery-item-overlay">
+        <span class="gallery-item-label">Daisy-Lily Clinic</span>
+      </div>
+    </div>
 
-<!-- GALLERY GRID -->
-<div class="gallery-grid">
-
-  <!-- Real images from the site -->
-  <div class="gallery-item featured" onclick="openLightbox('https://cdn.nearcut.com/R94NK8/thumb_large_Daisy_header2.jpg')">
-    <img src="https://cdn.nearcut.com/R94NK8/thumb_large_Daisy_header2.jpg" alt="Daisy-Lily clinic">
-    <div class="gallery-item-overlay"><span class="gallery-item-label">Daisy-Lily Clinic</span></div>
-  </div>
-
-  <div class="gallery-item featured" onclick="openLightbox('https://cdn.nearcut.com/3ZQTR4/thumb_large_Daisy_header.jpg')">
-    <img src="https://cdn.nearcut.com/3ZQTR4/thumb_large_Daisy_header.jpg" alt="Daisy-Lily treatments">
-    <div class="gallery-item-overlay"><span class="gallery-item-label">Our Treatments</span></div>
+    <div class="gallery-item featured" tabindex="0" role="button"
+         aria-label="View Daisy-Lily treatments photo"
+         data-src="https://cdn.nearcut.com/3ZQTR4/thumb_large_Daisy_header.jpg">
+      <img src="https://cdn.nearcut.com/3ZQTR4/thumb_large_Daisy_header.jpg"
+           alt="Daisy-Lily treatments">
+      <div class="gallery-item-overlay">
+        <span class="gallery-item-label">Our Treatments</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Placeholder cards for future work -->
-  <div class="gallery-item gallery-placeholder">
-    <span class="pl-icon">✨</span>
-    <span class="pl-text">Coming soon</span>
-  </div>
-  <div class="gallery-item gallery-placeholder">
-    <span class="pl-icon">🌸</span>
-    <span class="pl-text">Coming soon</span>
-  </div>
-  <div class="gallery-item gallery-placeholder">
-    <span class="pl-icon">💅</span>
-    <span class="pl-text">Coming soon</span>
-  </div>
-  <div class="gallery-item gallery-placeholder">
-    <span class="pl-icon">🌿</span>
-    <span class="pl-text">Coming soon</span>
+  <div class="instagram-cta">
+    <p>More photos of our beautiful results coming soon.<br>Follow us on Instagram for the latest looks.</p>
+    <div class="social-row">
+      <a class="social-pill" href="https://www.instagram.com/daisy_lily_aesthetics/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @daisy_lily_aesthetics
+      </a>
+    </div>
   </div>
 
-</div>
-
-<div class="coming-soon">
-  <p>More photos of our beautiful results coming soon.<br>Follow us on Instagram for the latest looks.</p>
-  <div class="social-row" style="margin-top:16px;display:flex;gap:10px;justify-content:center;">
-    <a class="social-pill" href="https://www.instagram.com/daisy_lily_aesthetics/" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      @daisy_lily_aesthetics
-    </a>
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <img id="lightboxImg" src="" alt="">
   </div>
-</div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
+    <span class="footer-sep">·</span>
+    <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
+    <br>Powered by Book in Beautiful
+  </footer>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <span class="footer-name">Daisy-Lily Aesthetic &amp; Beauty Clinic</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/privacy_policy">Privacy Policy</a>
-  <span class="footer-sep">·</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/cookie_policy">Cookie Policy</a>
-  <span class="footer-sep">·</span>
-  <a href="https://daisylilyaestheticsandbeauty.bookinbeautiful.com/terms_and_conditions">Terms</a>
-  <br>Powered by Book in Beautiful
-</footer>
+  <a class="fab" href="book.html">Book Now</a>
 
-<!-- FAB -->
-<a class="fab" href="book.html">Book Now</a>
+  <script>
+  (() => {
+    'use strict';
 
-<script>
-function openLightbox(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').classList.add('open');
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-}
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
-</script>
+    const lightbox   = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn   = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+      closeBtn.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+
+    // delegated listener — works for any future gallery items added to the grid
+    document.querySelector('.gallery-grid').addEventListener('click', e => {
+      const item = e.target.closest('[data-src]');
+      if (item) openLightbox(item.dataset.src, item.querySelector('img')?.alt);
+    });
+
+    document.querySelector('.gallery-grid').addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const item = e.target.closest('[data-src]');
+      if (item) { e.preventDefault(); openLightbox(item.dataset.src, item.querySelector('img')?.alt); }
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // click backdrop to close
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  })();
+  </script>
 </body>
 </html>
